@@ -1,16 +1,16 @@
 # pf-shell
 Linux 下链接远程服务器的工具
 
-# 使用
+## 使用
 
-*注意:需要提前安装ssh*
+*注意: 需要提前安装`ssh`、`expect`*
 
-```
+```sh
+cp password.example password
 ./pfs.sh 
-
 ```
 
-# password 文件
+## password 文件
 
 ```
 1:127.0.0.1:username:password:desc

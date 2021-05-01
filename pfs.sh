@@ -1,10 +1,11 @@
+#!/bin/sh
+
 ##########################################################################
-# File Name: so.sh
+# File Name: pfs.sh
 # Author: pfinal
 # mail: lampxiezi@163.com
 # Created Time: 2021年03月10日 星期三 12时07分15秒
 #########################################################################
-#!/bin/zsh
 
 direc=`dirname $0`
 function color(){
@@ -29,14 +30,14 @@ function color(){
 }
 
 function copyright(){
-    echo "#####################"
-    color red "   SSH Login Platform   "
-    echo "#####################"
+    echo "##########################################"
+    color green "   SSH Login Platform   "
+    echo "##########################################"
     echo
 }
 
 function underline(){
-    echo "-----------------------------------------"
+    echo "------------------------------------------"
 }
 
 function main(){
@@ -46,7 +47,7 @@ while [ True ];do
 
     echo "序号 |       主机      | 说明"
     underline
-    awk 'BEGIN {FS=":"} {printf("\033[0;31m% 3s \033[m | %15s | %s\n",$1,$2,$6)}' $direc/password.lst
+    awk 'BEGIN {FS=":"} {printf("\033[0;31m% 3s \033[m | %15s | %s\n",$1,$2,$6)}' $direc/password
     underline
     read -p '[*] 选择主机: ' number
     pw="$direc/password.lst"
