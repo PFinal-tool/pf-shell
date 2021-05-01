@@ -50,7 +50,7 @@ while [ True ];do
     awk 'BEGIN {FS=":"} {printf("\033[0;31m% 3s \033[m | %15s | %s\n",$1,$2,$6)}' $direc/password
     underline
     read -p '[*] 选择主机: ' number
-    pw="$direc/password.lst"
+    pw="$direc/password"
     ipaddr=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $2}}' $pw)
     port=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $3}}' $pw)
     username=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $4}}' $pw)
@@ -58,11 +58,11 @@ while [ True ];do
 
     case $number in
         [0-9]|[0-9][0-9]|[0-9][0-9][0-9])
-            echo $passwd | grep -q ".pem$"
+            echo $passwd | grep -q ".ssh"
             RETURN=$?
             if [[ $RETURN == 0 ]];then
                 ssh -i $passwd $username@$ipaddr -p $port
-                echo "ssh -i $direc/$passwd $username@$ipaddr -p $port"
+                echo "ssh -i $passwd $username@$ipaddr -p $port"
             else
                 expect -f $direc/ssh_login.exp $ipaddr $username $passwd $port
             fi
